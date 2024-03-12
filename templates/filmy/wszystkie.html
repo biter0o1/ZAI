@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista filmów w bazie danych</title>
+</head>
+<body>
+<ul>
+    {% for film in wszystkie_filmy %}
+        <li><a href="/szczegoly/{{ film.id }}/">{{film.tytul}}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

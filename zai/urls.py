@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import wszystkie, szczegoly
+from main.views import wszystkie, szczegoly, nowy, edycja, usun
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("wszystkie/", wszystkie),
-    path("szczegoly/", szczegoly),
+    path('wszystkie/', wszystkie),
+    path('szczegoly/<int:film_id>/', szczegoly),
+    path('nowy/', nowy),
+    path('edycja/<int:film_id>/', edycja),
+    path('usun/<int:film_id>/', usun)
 ]
