@@ -6,7 +6,6 @@ from main.forms import FilmForm
 from django.shortcuts import get_object_or_404
 
 
-
 def wszystkie(request):
     template = loader.get_template("filmy/wszystkie.html")
     wszystkie_filmy = Film.objects.all()
