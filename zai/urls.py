@@ -17,16 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import wszystkie, szczegoly, nowy, edycja, usun
-from film.views import FilmList, FilmRetrieve, FilmCreateList, UserList, UserCreateList
+from rest_framework.authtoken import views
 
 urlpatterns = [
+    path('api-token-auth/', views.obtain_auth_token),
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('filmlist/', FilmList.as_view(), name='FilmList'),
-    path('filmretrieve/<int:pk>/', FilmRetrieve.as_view(), name='FilmRetrieve'),
-    path('filmcreatelist/', FilmCreateList.as_view(), name='FilmCreateList'),
-    path('userlist/', UserList.as_view(), name='UserList'),
-    path('usercreatelist/', UserCreateList.as_view(), name='UserCreateList'),
+    path('filmy/', include('film.urls')),
+
 
 
     path('wszystkie/', wszystkie),

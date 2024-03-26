@@ -31,15 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
     'film',
-    "main"
+    "main",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = "zai.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': ['templates'],
+        'DIRS': [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -124,3 +125,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 'filmy.bearertoken.BearerAuthentication'
+        ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
