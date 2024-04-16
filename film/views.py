@@ -4,6 +4,9 @@ from .serializers import FilmModelSerializer, ExtraInfoSerializer, OcenaSerializ
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 class FilmCreateList(generics.ListCreateAPIView):
     # queryset = Film.objects.all().order_by('-rok','tytul')
@@ -68,3 +71,13 @@ class UserCreateList(generics.ListCreateAPIView):
 class UserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'Użytkownicy': reverse('UserCreateList', request=request, format=format),
+        'Wszystkie filmy': reverse('FilmCreateList', request=request, format=format),
+        'Informacje dodatkowe': reverse('ExtraInfoCreateList', request=request, format=format),
+        'Wszystkie oceny': reverse('OcenaCreateList', request=request, format=format),
+        'Wszyscy aktorzy': reverse('AktorCreateList', request=request, format=format),
+    })

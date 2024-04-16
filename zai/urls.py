@@ -26,7 +26,6 @@ urlpatterns = [
     path('filmy/', include('film.urls')),
 
 
-
     path('wszystkie/', wszystkie),
     path('szczegoly/<int:film_id>/', szczegoly),
     path('nowy/', nowy),
