@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import wszystkie, szczegoly, nowy, edycja, usun
+from film.views import api_root
 from rest_framework.authtoken import views
 
 urlpatterns = [
@@ -24,7 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('filmy/', include('film.urls')),
-
+    path('', api_root),
 
     path('wszystkie/', wszystkie),
     path('szczegoly/<int:film_id>/', szczegoly),
