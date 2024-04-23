@@ -53,3 +53,11 @@ class UserSerializerShort(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class statRezyser(serializers.ListSerializer):
+    child = serializers.CharField()
+
+
+class statOceny(serializers.ListSerializer):
+    child = serializers.CharField()
