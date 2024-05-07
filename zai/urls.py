@@ -19,6 +19,8 @@ from django.urls import path, include
 from main.views import wszystkie, szczegoly, nowy, edycja, usun
 from film.views import api_root
 from rest_framework.authtoken import views
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('filmy/', include('film.urls')),
     path('', api_root),
+
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
     path('wszystkie/', wszystkie),
     path('szczegoly/<int:film_id>/', szczegoly),

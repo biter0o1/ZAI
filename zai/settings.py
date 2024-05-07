@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GRAPHENE = {
+    "SCHEMA": "film.schema.schema"
+}
 
 # Application definition
 
@@ -38,9 +41,10 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.staticfiles',
+    'graphene_django',
     'film',
-    "main",
+    "main"
 ]
 
 MIDDLEWARE = [
