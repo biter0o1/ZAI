@@ -21,6 +21,7 @@ from film.views import api_root
 from rest_framework.authtoken import views
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
+from graphql_jwt.decorators import jwt_cookie
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token),
@@ -29,7 +30,7 @@ urlpatterns = [
     path('filmy/', include('film.urls')),
     path('', api_root),
 
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    path("graphql",  jwt_cookie(GraphQLView.as_view(graphiql=True))),
 
     path('wszystkie/', wszystkie),
     path('szczegoly/<int:film_id>/', szczegoly),
